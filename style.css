@@ -1,0 +1,25 @@
+body{
+    height:100vh;
+    margin:0;
+    background: black;
+    font-family: "Figtree", sans-serif;
+}
+.spesiyalnavbar{
+    background-color: black !important;
+    box-shadow: 2px 2px 2px 2px #797979;
+   
+}
+.nav-link{
+     font-weight: bold !important;
+     font-family: "Figtree", sans-serif;
+     color:#ffbb00;
+   
+   
+   
+}
+.figtree-bold {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}

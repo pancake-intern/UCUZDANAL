@@ -1,0 +1,17 @@
+.companyLogo{
+  width: auto;
+  height: 100px;
+}
+.searchBtn{
+    background-color: black;
+    border:  1px solid gold;
+    
+}
+.gold-input{
+    color:gold;
+}
+.searchBtn::placeholder {
+  color: gold;
+  opacity: 1; 
+  
+}

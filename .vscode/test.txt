@@ -1,0 +1,86 @@
+// --- YENİ index.js ---
+
+// Sayfalama durumunu takip etmek için değişkenler
+let currentPage = 1;
+const productsPerPage = 21; // Her sayfada 3x7=21 ürün
+let totalProducts = 0;
+
+// Ana Fonksiyon: Belirli bir sayfanın ürünlerini getirir
+async function getProducts(page) {
+    currentPage = page; // Mevcut sayfayı güncelle
+    const skip = (page - 1) * productsPerPage;
+
+    try {
+        // API isteğini limit ve skip parametreleriyle güncelliyoruz
+        const response = await fetch(`https://dummyjson.com/products?limit=${productsPerPage}&skip=${skip}`);
+        const data = await response.json();
+        
+        totalProducts = data.total; // Toplam ürün sayısını API'den alıyoruz
+        const products = data.products;
+
+        const productContainer = document.getElementById('product-list');
+        productContainer.innerHTML = ''; // Yeni ürünler için alanı temizle
+
+        // Ürün kartlarını oluştur
+        products.forEach(product => {
+            const productCardHTML = `
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card h-100 text-white bg-dark">
+                        <img src="${product.thumbnail}" class="card-img-top" alt="${product.title}" style="height: 200px; object-fit: cover;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">${product.title}</h5>
+                            <p class="card-text">${product.description.substring(0, 50)}...</p>
+                            <div class="mt-auto">
+                                <p class="fs-5 fw-bold">${product.price} ₺</p>
+                                <button class="btn btn-warning w-100">Sepete Ekle</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            productContainer.innerHTML += productCardHTML;
+        });
+
+        // Ürünler yüklendikten sonra sayfa numaralarını oluştur
+        renderPaginationControls();
+
+    } catch (error) {
+        console.error("Ürünler getirilirken hata oluştu:", error);
+    }
+}
+
+// Sayfa numarası butonlarını oluşturan fonksiyon
+function renderPaginationControls() {
+    const paginationContainer = document.getElementById('pagination-controls');
+    paginationContainer.innerHTML = ''; // Eski butonları temizle
+
+    const totalPages = Math.ceil(totalProducts / productsPerPage);
+
+    for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement('li');
+        li.className = 'page-item';
+        
+        // Mevcut sayfadaysak butonu "active" yap
+        if (i === currentPage) {
+            li.classList.add('active');
+        }
+
+        const a = document.createElement('a');
+        a.className = 'page-link';
+        a.href = '#'; // Sayfanın en üstüne gitmesini engellemek için '#'
+        a.innerText = i;
+        
+        a.addEventListener('click', (event) => {
+            event.preventDefault(); // a etiketinin varsayılan davranışını engelle
+            getProducts(i); // Tıklanan sayfanın ürünlerini getir
+        });
+
+        li.appendChild(a);
+        paginationContainer.appendChild(li);
+    }
+}
+
+// Sayfa ilk yüklendiğinde 1. sayfanın ürünlerini getir
+document.addEventListener('DOMContentLoaded', () => {
+    getProducts(1);
+});

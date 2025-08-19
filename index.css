@@ -27,14 +27,29 @@
   display: flex;
   gap:10px;
 }
+.shopping-cardBtn{
+  max-height: 35px;
+  border: 1px solid rgb(224, 192, 7);
+  color:gold;
+}
+.shopping-card{
+  width: 50px;
+      
+}
 .signinButton{
   background-color: gold;
   font-weight: bold ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .signupButton{
   background-color: black;
   color:gold;
   border: 1px solid gold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* .mycontainer{

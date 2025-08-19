@@ -26,15 +26,19 @@
 .right{
   display: flex;
   gap:10px;
+  justify-content: center;
+  align-items: center;
 }
 .shopping-cardBtn{
-  max-height: 35px;
+  max-height: 50px;
   border: 1px solid rgb(224, 192, 7);
   color:gold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .shopping-card{
-  width: 50px;
-      
+  width: 50px;      
 }
 .signinButton{
   background-color: gold;

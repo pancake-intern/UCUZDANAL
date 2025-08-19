@@ -19,9 +19,24 @@
   display: flex;
   justify-content: space-between; 
   align-items: center; 
+  
   border: 1px solid black;
 
 }
+.right{
+  display: flex;
+  gap:10px;
+}
+.signinButton{
+  background-color: gold;
+  font-weight: bold ;
+}
+.signupButton{
+  background-color: black;
+  color:gold;
+  border: 1px solid gold;
+}
+
 /* .mycontainer{
   display:grid;
   grid-template-columns: auto auto auto;

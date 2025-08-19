@@ -15,3 +15,15 @@
   opacity: 1; 
   
 }
+.headerDiv{
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  border: 1px solid black;
+
+}
+/* .mycontainer{
+  display:grid;
+  grid-template-columns: auto auto auto;
+  padding: 0px;
+} */

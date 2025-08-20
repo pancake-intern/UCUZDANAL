@@ -17,9 +17,9 @@ function filterProducts(products){
 
         const pcategory= product.category;
         console.log(pcategory);
-        for (const anaKategori in kategoriHaritasi) {
-            if (kategoriHaritasi[anaKategori].includes(urunKategorisi)) {
-                filtrelenmisUrunler[anaKategori].push(urun);
+        for (mainCategory in categoryMap) {
+            if (categoryMap[mainCategory].includes(pcategory)) {
+                filteredProducts[mainCategory].push(product);
                 break; 
             }
         }

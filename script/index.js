@@ -13,6 +13,12 @@ if (storedProductCount) {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function(){
+// burada kullanıcı localstorageda varsa ona göre sayfayı düzenlicen.
+
+})
+
+
 async function getData(page) {
     currentPage = page;
     const skip = (page - 1) * productsPerPage;

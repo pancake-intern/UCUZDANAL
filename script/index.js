@@ -83,7 +83,7 @@ function createPagination() {
         }
 
         const a = document.createElement('a');
-        a.classList.add('page-link');
+        a.classList.add('page-link','bg-secondary' ,'signupButton');
         a.href = '#';
         a.textContent = i;
         a.addEventListener('click', (e) => {

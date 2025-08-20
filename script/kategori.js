@@ -16,6 +16,13 @@ function filterProducts(products){
     products.forEach(product => {
 
         const pcategory= product.category;
-        
+        console.log(pcategory);
+        for (const anaKategori in kategoriHaritasi) {
+            if (kategoriHaritasi[anaKategori].includes(urunKategorisi)) {
+                filtrelenmisUrunler[anaKategori].push(urun);
+                break; 
+            }
+        }
     });
 }    
+filterProducts(products)

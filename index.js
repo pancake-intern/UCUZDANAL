@@ -58,6 +58,7 @@ async function getData(page){
 
 			document.querySelectorAll(".addtoCard").forEach(btn => {
 			btn.addEventListener("click", () => {
+				productPrice= document.querySelector(".addtoCard").value
 				productsinCard += 1;
 				localStorage.setItem("productsinCard", productsinCard);
 				const shoppingCard = document.querySelector('#productCounter');

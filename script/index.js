@@ -68,7 +68,7 @@ async function getData(page) {
 function createPagination() {
     const paginationContainer = document.getElementById('pagination-container');
     if (!paginationContainer) {
-        console.error("Pagination container not found.");
+        console.error("Pagination container bulunamadı.");
         return;
     }
     paginationContainer.innerHTML = '';

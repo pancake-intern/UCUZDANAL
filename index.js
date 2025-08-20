@@ -15,7 +15,7 @@ let currentPage = 1;
 const productsPerPage = 28; 
 let totalProducts = 0;
 let productsinCard=0;// ürünler sepete eklenince anasayfada sepete git yerine bu sayıyı ekle. snap olur p olur dene birini lastchild olarak koy.
-
+localStorage.setItem("productsinCard",productsinCard)
 async function getData(page){
 	currentPage=page;
 	const skip= (page-1) * currentPage;
@@ -49,6 +49,7 @@ async function getData(page){
                 </div>
 			`
 			productContainer.innerHTML += productcardHTML;
+			productContainer
 		});
 
 
@@ -63,6 +64,7 @@ async function getData(page){
 getData(1)
 document.querySelector(".signinButton").addEventListener("click",(()=>{
 	productsinCard+=1;
+	localStorage.setItem("productsinCard",productsinCard)
 	const shoppingCard= document.querySelector('#productCounter')
 	shoppingCard.innerText=''
 	shoppingCard.innerText=`${productsinCard}`	

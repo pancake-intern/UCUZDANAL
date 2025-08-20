@@ -53,17 +53,20 @@ async function getData(page){
                 </div>
 			`
 			productContainer.innerHTML += productcardHTML;
-			productContainer
+			
 
 
 			document.querySelectorAll(".addtoCard").forEach(btn => {
 			btn.addEventListener("click", () => {
-				productPrice= document.querySelector(".addtoCard").value
+				
+				const productPrice= document.querySelector(".addtoCard")
+				console.log(productPrice)
 				productsinCard += 1;
 				localStorage.setItem("productsinCard", productsinCard);
 				const shoppingCard = document.querySelector('#productCounter');
 				shoppingCard.innerText = '';
 				shoppingCard.innerText = `${productsinCard}`;
+				
 			});
 		});
 		});
@@ -78,3 +81,4 @@ async function getData(page){
 
 }
 getData(1)
+

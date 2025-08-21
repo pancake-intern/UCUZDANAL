@@ -10,8 +10,8 @@
     localStorage.setItem("username",username)
     localStorage.setItem("useremail",useremail)
     localStorage.setItem("userpassword",userpassword)
-
-    alert("Registration successful! Please login.");
-    window.location.href = "kullanicigiris.html";
+    localStorage.setItem("isLoggedIn",true);
+   alert("Giriş başarılı.Keyifli alışverişler dileriz.");
+   window.location.href = "../index.html";
  })
  

@@ -113,6 +113,12 @@ async function getProductsByCategory() {
                 btn.innerText = "Sepete Eklendi!";
                 btn.classList.remove("btn-warning");
                 btn.classList.add("btn-success");
+
+                setTimeout(() => {
+                    btn.innerText = "Sepete Ekle";
+                    btn.classList.remove("btn-success");
+                    btn.classList.add("btn-warning");
+                }, 1000);
                 
             });
         });

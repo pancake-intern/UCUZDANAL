@@ -41,12 +41,12 @@ function checkUserSession() {
 }
 
 function updateProfileInfo(profileSection) {
-    debugger;
-  const greeting= document.createElement('p')
-  greeting.classList.add("profile-section","goldtext","mx-1")
-  const username = localStorage.getItem('username');
-  greeting.innerText=`Hoşgeldin ${username}`
-  profileSection.appendChild(greeting)
+    const username = localStorage.getItem('username')
+    const greeting= document.createElement('p')
+    greeting.classList.add("profile-section","goldtext","mx-1")
+;
+    greeting.innerText=`Hoşgeldin ${username}`
+    profileSection.appendChild(greeting)
 }
 //!.
 async function getData(page) {

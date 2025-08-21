@@ -92,9 +92,29 @@ async function getData(page) {
                 shoppingCard.innerText = productsinCard;
             });
         });
-
-       
         createPagination();
+
+          document.querySelectorAll(".addtoCard").forEach(btn => {
+            btn.addEventListener("click", () => {
+                productsinCard += 1;
+                localStorage.setItem("productsinCard", productsinCard);
+                const shoppingCard = document.querySelector('#productCounter');
+                if (shoppingCard) {
+                    shoppingCard.innerText = productsinCard;
+                }
+                btn.innerText = "Sepete Eklendi!";
+                btn.classList.remove("btn-warning");
+                btn.classList.add("btn-success");
+
+                setTimeout(() => {
+                    btn.innerText = "Sepete Ekle";
+                    btn.classList.remove("btn-success");
+                    btn.classList.add("btn-warning");
+                }, 1000);
+                
+            });
+        });
+
 
     } catch (error) {
         console.error("Hata oluştu:", error);

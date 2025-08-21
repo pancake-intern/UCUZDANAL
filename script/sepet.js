@@ -30,7 +30,7 @@ function checkUserSession() {
 function updateProfileInfo(profileSection) {
     const username = localStorage.getItem('username')
     const greeting= document.createElement('p')
-    greeting.classList.add("profile-section","goldtext","mx-1")
+    greeting.classList.add("profile-section","goldtext","mx-1","my-auto")
 ;
     greeting.innerText=`Hoşgeldin ${username}`
     profileSection.appendChild(greeting)

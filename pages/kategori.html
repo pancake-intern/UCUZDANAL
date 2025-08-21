@@ -3,9 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Kategori</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/kategori.css">    
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    
 </head>
 <body>
+    <div class="container-fluid">
+        <div class="row align-items-center">
+
+            <div class="col-12 col-lg-3 text-center text-lg-start">
+                <a href="../index.html">
+                    <img src="../assets/gptLogo2.png" class="companyLogo" alt="Logo">
+                </a>
+            </div>
+
+            <div class="col-12 col-lg-9">
+                <div class="right d-flex flex-column flex-lg-row align-items-center justify-content-center justify-content-lg-end gap-2">
+                    <input type="search" id="searchButton" class="searchBtn rounded form-control-lg gold-input mb-2 mb-lg-0" placeholder="Ürün ara">
+                    
+                    <a href="/pages/sepet.html" class="btn shopping-cardBtn mb-2 mb-lg-0" id="shoppingCart-a">
+                        Sepete git
+                        <img src="../assets/goldshoppingcart.png" alt="Sepet" class="shopping-card">
+                        <p class="m-auto" id="productCounter"></p>
+                        
+                    </a>
+
+                    <div class="d-flex gap-2">
+                         <a href="/pages/kullanicigiris.html" class="btn btn-lg signinButton">Üye Girişi</a>
+                         <a href="/pages/kullanicikayit.html" class="btn btn-lg signupButton">Kayıt Ol</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark spesiyalnavbar">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                <p class="m-auto" id="productCounter"></p>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav w-100 justify-content-evenly text-center">
+                    <a href="../index.html" class="nav-link">ANASAYFA</a>
+                    
+                    <a href="/pages/kategori.html?category=beauty" class="nav-link">BEAUTY</a>
+                    <a href="/pages/kategori.html?category=fragrances" class="nav-link">PARFÜM</a>
+                    <a href="/pages/kategori.html?category=furniture" class="nav-link">MOBİLYA</a>
+                    <a href="/pages/kategori.html?category=groceries" class="nav-link">MEYVE-SEBZE</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+     <div class="container my-5">
+        <h1 id="category-title" class="mb-4 text-center goldtext"></h1>
+        <div id="product-list" class="row">
+           
+            </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="../script/kategori.js"></script>
 </body>
 </html>

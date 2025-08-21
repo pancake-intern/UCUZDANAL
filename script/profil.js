@@ -1,7 +1,4 @@
 document.getElementById('exitaccount').addEventListener("click",()=>{
-    localStorage.removeItem("username")
-    localStorage.removeItem("useremail")
-    localStorage.removeItem("userpassword")
     localStorage.setItem("isLoggedIn",false)
     location.reload()
 })
@@ -19,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const username = localStorage.getItem("username");
     const useremail = localStorage.getItem("useremail");
+    const userpassword= localStorage.getItem("userpassword")
 
     const usernameP = document.createElement("p");
     usernameP.innerHTML = `<strong class="goldtext">Kullanıcı Adı:</strong> ${username}`;
@@ -28,10 +26,14 @@ document.addEventListener('DOMContentLoaded', function() {
     emailP.innerHTML = `<strong class="goldtext">E-posta:</strong> ${useremail}`;
     emailP.classList.add("fs-4");
 
+    const passwordP= document.createElement("p");
+    passwordP.innerHTML=`<strong class="goldtext">Şifre:</strong> ${userpassword}`;
+    passwordP.classList.add("fs-4");
+
     mainDiv.appendChild(title);
     mainDiv.appendChild(usernameP);
     mainDiv.appendChild(emailP);
-
+    mainDiv.appendChild(passwordP)
     mammamia.appendChild(mainDiv);
   }else{
     const mammamia= document.getElementsByClassName("mammamia")

@@ -2,11 +2,7 @@
 
 let productsinCard = 0;
 
-//İNDEXTEKİ SİSTEM, SUAN CALISMIYOR
-const storedProductCount2 = localStorage.getItem("productsinCard");
-if (storedProductCount2) {
-    productsinCard = parseInt(storedProductCount2, 10);
-}
+
 
 //sadece sayaç, productsincardı tıklanan şeyin verisini alacak şekilde kayddet.
 
@@ -72,7 +68,10 @@ async function getProductsByCategory() {
             btn.addEventListener("click", () => {
                 productsinCard += 1;
                 localStorage.setItem("productsinCard", productsinCard);
-               
+                const shoppingCard = document.querySelector('#productCounter');
+                if (shoppingCard) {
+                    shoppingCard.innerText = productsinCard;
+                }
                 btn.innerText = "Sepete Eklendi!";
                 btn.classList.remove("btn-warning");
                 btn.classList.add("btn-success");

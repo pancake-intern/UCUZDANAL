@@ -14,7 +14,7 @@ async function getcategoryData(page) {
         const mainCategories=[];
         data.products.map((product) =>{
           
-            const categories= product.category;
+            const categories= product;
 
             if(!mainCategories.includes(categories)){
             mainCategories.push(categories);}
@@ -26,6 +26,7 @@ async function getcategoryData(page) {
             });
         const categoriesRendered=["Laptop","Mens-shirts","Mens-shoes","Mens-watches",
             "Mobile-accessories","Motorcycle","Skin-care","Smartphones","Sports-accesories","Sunglasses","Tablets","Tops","Vehicle","Womens-bags","Womens-dresses","Womens-jewellery","Womens-Shoes","Womens-watches"]
+            console.log(categoriesRendered)
     } catch(error){
 
     

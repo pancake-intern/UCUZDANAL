@@ -1,0 +1,11 @@
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; 
+}
+.dropdown-menu {
+  background-color: black !important;
+}
+.dropdown-menu .dropdown-item {
+  color: gold !important;
+}

@@ -85,17 +85,19 @@ async function getProductsByCategory() {
            
             const productcardHTML = `
                 <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                    <div class="card h-100 text-white bg-dark">
-                        <img src="${product.thumbnail}" class="card-img-top" alt="${product.title}" style="height: 200px; object-fit: cover;">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">${product.title}</h5>
-                            <p class="card-text">${product.description.substring(0, 50)}...</p>
-                            <div class="mt-auto">
-                                <p class="fs-5 fw-bold">${product.price} $</p>
-                                <button class="btn fw-bold btn-warning addtoCard w-100" data-product-id="${product.id}">Sepete Ekle</button>
+                    <a href="/pages/urun-detayi.html?id=${product.id}" class="text-decoration-none">
+                        <div class="card h-100 text-white bg-dark">
+                            <img src="${product.thumbnail}" class="card-img-top" alt="${product.title}" style="height: 200px; object-fit: cover;">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">${product.title}</h5>
+                                <p class="card-text">${product.description.substring(0, 50)}...</p>
+                                <div class="mt-auto">
+                                    <p class="fs-5 fw-bold">${product.price} $</p>
+                                    <button class="btn fw-bold btn-warning addtoCard w-100" data-product-id="${product.id}">Sepete Ekle</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             `;
             productContainer.innerHTML += productcardHTML;
@@ -103,7 +105,10 @@ async function getProductsByCategory() {
 
         
         document.querySelectorAll(".addtoCard").forEach(btn => {
-            btn.addEventListener("click", () => {
+            btn.addEventListener("click", (e) => {
+                e.preventDefault(); 
+                e.stopPropagation(); 
+
                 productsinCard += 1;
                 localStorage.setItem("productsinCard", productsinCard);
                 const shoppingCard = document.querySelector('#productCounter');

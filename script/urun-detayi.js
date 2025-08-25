@@ -1,8 +1,56 @@
+let totalProducts = 0;
+
+let productsinCard = JSON.parse(localStorage.getItem("productsinCard"))
+document.addEventListener('DOMContentLoaded', function() {
+  
+  checkUserSession();
+  
+});
+
+function checkUserSession() {
+ 
+  const isUserLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; 
+  const loginButton = document.getElementById('signinButton');
+  const signupButton = document.getElementById('signupButton');
+  const profileSection = document.getElementById('profile-section');
+ 
+  if (isUserLoggedIn) {
+   
+    if (loginButton) loginButton.style.display = 'none';
+    if (signupButton) signupButton.style.display = 'none';
+    
+    
+    if (profileSection) profileSection.style.display = 'flex';
+    
+    
+    updateProfileInfo(profileSection);
+    
+  } else {
+   
+    
+  }
+}
+
+function updateProfileInfo(profileSection) {
+    const username = localStorage.getItem('username')
+    const greeting= document.createElement('p')
+    greeting.classList.add("profile-section","goldtext","mx-1","my-auto")
+;
+    greeting.innerText=`Hoşgeldin ${username}`
+    profileSection.appendChild(greeting)
+}
+//!üst taraf çoğu kodda var
+//!ancak sonra düzelt yeni bir jsyi htmlnin başında başlat girişi vs kontrol edip navbarı öyle göster
+
+
+
+
+
 async function getproductbyID() {
     const params = new URLSearchParams(window.location.search);
     const productId = params.get('id');
     if(!productId)  return;
-    debugger;
+    
     try {
         
         const response= await fetch(`https://dummyjson.com/products/${productId}`)
@@ -10,40 +58,68 @@ async function getproductbyID() {
         console.log(product)
         const container = document.getElementById('product-details-container');
         
-        
-       
+        let imageGalleryHTML = '';
+        product.images.forEach((img, index) => {
+            imageGalleryHTML += `<img src="${img}" 
+            class="img-fluid mb-2 my-2 ${index === 0 ? 'active' : ''}" >`; 
+        })
 
         
         const productDetailsHTML = `
-            <div class="col-md-2">
-                <div class="product-image-gallery">
-                   
+            <div class="col-md-2 rounded">
+                <div class="product-image-gallery  rounded my-2">
+                   ${imageGalleryHTML}
                 </div>
             </div>
             <div class="col-md-5">
-               
+               <img src="${product.thumbnail}" id="main-product-image" class="img-fluid rounded" alt="${product.title}">
             </div>
 
             <div class="col-md-5 goldtext">
                 <h1 class="mb-3">${product.title}</h1>
-                <p class="lead">${product.description}</p>
+                <p class="lead text-light">${product.description}</p>
                
                 <p><strong>Marka:</strong> ${product.brand}</p>
                 <p><strong>Kategori:</strong> ${product.category}</p>
                 <p><strong>Stok:</strong> ${product.stock} adet</p>
                 <p><strong>Puan:</strong> ${product.rating} / 5.0</p>
-                <h2 class="my-4">${product.price} $ <span class="text-grey fs-5 text-decoration-line-through">
+                <h2 class="my-4">${product.price} $ <span class="text-secondary fs-5 text-decoration-line-through">
                 ${(product.price / (1 - product.discountPercentage / 100)).toFixed(2)} $</span></h2>
 
-                <button id="addToCartBtn" class="btn btn-lg btn-warning fw-bold w-100">Sepete Ekle</button>
+                <button id="addToCartButton" class="btn btn-lg btn-warning fw-bold w-100">Sepete Ekle</button>
             </div>
         `;
-
-       
         container.innerHTML = productDetailsHTML;
+
+        const addToCartButton = document.getElementById('addToCartButton')
+        addToCartButton.addEventListener("click",() => {
+               debugger;
+                productsinCard += 1;
+                localStorage.setItem("productsinCard", productsinCard);
+                const shoppingCard = document.querySelector('#productCounter');
+                if (shoppingCard) {
+                    shoppingCard.innerText = productsinCard;
+                }
+                addToCartButton.innerText = "Sepete Eklendi!";
+                addToCartButton.classList.remove("btn-warning");
+                addToCartButton.classList.add("btn-success");
+
+                setTimeout(() => {
+                    addToCartButton.innerText = "Sepete Ekle";
+                    addToCartButton.classList.remove("btn-success");
+                    addToCartButton.classList.add("btn-warning");
+                }, 1000);
+            
+        });
+    
+}
         
-    } catch (error) {
+        
+    catch (error) {
         alert("HATA.")
     }
 }
+
+
+
 getproductbyID()

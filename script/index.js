@@ -48,7 +48,8 @@ function updateProfileInfo(profileSection) {
     greeting.innerText=`Hoşgeldin ${username}`
     profileSection.appendChild(greeting)
 }
-//!.
+//işleyişi bozuyor.
+//!. 
 async function getData(page) {
     currentPage = page;
     const skip = (page - 1) * productsPerPage;
@@ -83,6 +84,23 @@ async function getData(page) {
                 </div>
             `;
             productContainer.innerHTML += productcardHTML;
+        });
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            e.stopPropagation(); 
+            
+           
+            const productId = parseInt(button.dataset.productId, 10);
+            
+            
+            const productToAdd = products.find(p => p.id === productId);
+            
+            if (productToAdd) {
+                
+                addToCart(productToAdd, button);
+            }
+        });
         });
 
         document.querySelectorAll('.add-to-cart-btn').forEach(button => {

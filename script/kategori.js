@@ -104,28 +104,22 @@ async function getProductsByCategory() {
         });
 
         
-        document.querySelectorAll(".addtoCard").forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                e.preventDefault(); 
-                e.stopPropagation(); 
-
-                productsinCard += 1;
-                localStorage.setItem("productsinCard", productsinCard);
-                const shoppingCard = document.querySelector('#productCounter');
-                if (shoppingCard) {
-                    shoppingCard.innerText = productsinCard;
-                }
-                btn.innerText = "Sepete Eklendi!";
-                btn.classList.remove("btn-warning");
-                btn.classList.add("btn-success");
-
-                setTimeout(() => {
-                    btn.innerText = "Sepete Ekle";
-                    btn.classList.remove("btn-success");
-                    btn.classList.add("btn-warning");
-                }, 1000);
+        document.querySelectorAll('.addtoCard').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            e.stopPropagation(); 
+            
+           
+            const productId = parseInt(button.dataset.productId, 10);
+            
+            
+            const productToAdd = products.find(p => p.id === productId);
+            
+            if (productToAdd) {
                 
-            });
+                addToCart(productToAdd, button);
+            }
+        });
         });
 
     } catch (error) {

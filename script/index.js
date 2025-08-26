@@ -103,31 +103,7 @@ async function getData(page) {
         });
         });
 
-        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault(); 
-                e.stopPropagation(); 
-                
-                productsinCard += 1;
-                localStorage.setItem("productsinCard", productsinCard);
-                const shoppingCard = document.querySelector('#productCounter');
-                if (shoppingCard) {
-                    shoppingCard.innerText = productsinCard;
-                }
-                
-                const btn = e.target;
-                btn.innerText = "Sepete Eklendi!";
-                btn.classList.remove("btn-warning");
-                btn.classList.add("btn-success");
-
-                setTimeout(() => {
-                    btn.innerText = "Sepete Ekle";
-                    btn.classList.remove("btn-success");
-                    btn.classList.add("btn-warning");
-                }, 1000);
-            });
-        });
-
+        
         createPagination();
 
 

@@ -14,6 +14,7 @@ async function getproductbyID() {
     const productId = params.get('id');
     if(!productId)  return;
     
+     
     try {
         debugger;
         const response= await fetch(`https://dummyjson.com/products/${productId}`)
@@ -56,28 +57,25 @@ async function getproductbyID() {
        
         
 
-        const addToCartButton = document.getElementById('addToCartButton')
-        addToCartButton.addEventListener("click",() => {
-               debugger;
-                productsinCard += 1;
-                localStorage.setItem("productsinCard", productsinCard);
-                const shoppingCard = document.querySelector('#productCounter');
-                if (shoppingCard) {
-                    shoppingCard.innerText = productsinCard;
-                }
-                addToCartButton.innerText = "Sepete Eklendi!";
-                addToCartButton.classList.remove("btn-warning");
-                addToCartButton.classList.add("btn-success");
-
-                setTimeout(() => {
-                    addToCartButton.innerText = "Sepete Ekle";
-                    addToCartButton.classList.remove("btn-success");
-                    addToCartButton.classList.add("btn-warning");
-                }, 1000);
+  const addtoCartButton=document.getElementById("addToCartButton")
+  addtoCartButton.addEventListener('click', addCart)
+           debugger;
             
-        });
-    
-}
+           function addCart() {
+            
+           
+            
+            
+            const productToAdd = product.id;
+            console.log(productToAdd)
+            if (productToAdd) {
+                
+                addCart(productToAdd, addtoCartButton);
+            }
+        }
+        
+
+    }
         
         
     catch (error) {

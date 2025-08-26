@@ -7,8 +7,13 @@ function addToCart(product, button) {
     
     let existingProduct = cart.find(item => item.id === product.id);
     
-    // if(item.stock<)
-    localStorage.getItem("")
+     const currentQuantityInCart = existingProduct ? existingProduct.quantity : 0;
+
+    
+    if (currentQuantityInCart >= product.stock) {
+       
+        showStockErrorAnimation(button);
+        return; }
     if (existingProduct) {
        
         existingProduct.quantity += 1;
@@ -59,6 +64,23 @@ function animateButton(button) {
         button.classList.remove("btn-success");
         button.classList.add("btn-warning");
     }, 1000);
+}
+function showStockErrorAnimation(button) {
+    
+    button.innerText = "Stok Tükendi!";
+
+    button.classList.remove("btn-warning");
+    button.classList.remove("btn-success");
+    button.classList.add("btn-danger");
+    button.disabled = true;
+
+   
+    setTimeout(() => {
+        button.innerText = "Sepete Ekle";
+        button.classList.remove("btn-danger");
+        button.classList.add("btn-warning");
+        button.disabled = false;
+    }, 2000);
 }
 
  document.addEventListener('DOMContentLoaded', updateCartCounter);

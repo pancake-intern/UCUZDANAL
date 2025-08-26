@@ -6,10 +6,13 @@ function addToCart(product, button) {
 
     
     let existingProduct = cart.find(item => item.id === product.id);
-    let productStock=cart.find(item => item.stock ===product.stock)
-    let productQuantity = cart.find(item => item.quantity === product.quantity)
-    if(productStock > productQuantity || productStock <= 0) return;
-
+    let productStock=cart.find(item => item.stock ===product.stock);
+    let productQuantity = cart.find(item => item.quantity === product.quantity);
+    if(productStock > productQuantity || productStock <= 0) {console.log("BOOM YOU CANT ADD ANYMORE ITS OUT OF STOCK");
+    return;
+    }
+    
+  
     const currentQuantityInCart = existingProduct ? existingProduct.quantity : 0;
 
     

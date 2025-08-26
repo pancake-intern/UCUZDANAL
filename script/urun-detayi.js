@@ -2,13 +2,6 @@ let totalProducts = 0;
 
 let productsinCard = JSON.parse(localStorage.getItem("productsinCard"))
 
-//!üst taraf çoğu kodda var
-//!ancak sonra düzelt yeni bir jsyi htmlnin başında başlat girişi vs kontrol edip navbarı öyle göster
-
-
-
-
-
 async function getproductbyID() {
     const params = new URLSearchParams(window.location.search);
     const productId = params.get('id');
@@ -54,12 +47,10 @@ async function getproductbyID() {
             </div>
         `;
         container.innerHTML = productDetailsHTML;
-       
-        
 
   const addtoCartButton=document.getElementById("addToCartButton")
   addtoCartButton.addEventListener('click', addCart)
-           debugger;
+           
             
            function addCart() {
             
@@ -70,7 +61,7 @@ async function getproductbyID() {
             console.log(productToAdd)
             if (productToAdd) {
                 
-                addCart(productToAdd, addtoCartButton);
+                addToCart(productToAdd, addtoCartButton);
             }
         }
         
@@ -82,7 +73,5 @@ async function getproductbyID() {
         alert("HATA.")
     }
 }
-
-
 
 getproductbyID()

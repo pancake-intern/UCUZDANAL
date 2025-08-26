@@ -12,10 +12,7 @@ if (storedProductCount) {
         shoppingCard.innerText = productsinCard;
     }
 }
-//!
 
-//işleyişi bozuyor.
-//!. 
 async function getData(page) {
     currentPage = page;
     const skip = (page - 1) * productsPerPage;

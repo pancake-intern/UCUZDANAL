@@ -9,7 +9,7 @@ async function getproductbyID() {
     
      
     try {
-        debugger;
+        
         const response= await fetch(`https://dummyjson.com/products/${productId}`)
         const product=await response.json()
         console.log(product)

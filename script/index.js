@@ -49,6 +49,24 @@ async function getData(page) {
         totalProducts = data.total;
         displayProducts(data.products);
         createPagination();
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            e.stopPropagation(); 
+            
+           
+            const productId = parseInt(button.dataset.productId, 10);
+            
+            
+            const productToAdd = data.products.find(p => p.id === productId);
+            
+            if (productToAdd) {
+                
+                addToCart(productToAdd, button);
+            }
+        });
+        });
     } catch (error) {
         console.error("Veri alınırken hata oluştu:", error);
     }
@@ -56,7 +74,34 @@ async function getData(page) {
 
 
 function createPagination() {
-   
+    const paginationContainer = document.getElementById('pagination-container');
+    if (!paginationContainer) {
+        console.error("Pagination container bulunamadı.");
+        return;
+    }
+    paginationContainer.innerHTML = '';
+
+    const totalPages = Math.ceil(totalProducts / productsPerPage);
+
+    for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement('li');
+        li.classList.add('page-item');
+        if (i === currentPage) {
+            li.classList.add('active');
+        }
+
+        const a = document.createElement('a');
+        a.classList.add('page-link','bg-secondary' ,'signupButton');
+        a.href = '#';
+        a.textContent = i;
+        a.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            getData(i);
+        });
+
+        li.appendChild(a);
+        paginationContainer.appendChild(li);
+    }
 }
 
 
@@ -87,6 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         document.getElementById('searchButton').value = searchQuery;
         performSearch(searchQuery);
+
+
     } else {
        
         getData(1);

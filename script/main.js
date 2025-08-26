@@ -6,8 +6,11 @@ function addToCart(product, button) {
 
     
     let existingProduct = cart.find(item => item.id === product.id);
-    
-     const currentQuantityInCart = existingProduct ? existingProduct.quantity : 0;
+    let productStock=cart.find(item => item.stock ===product.stock)
+    let productQuantity = cart.find(item => item.quantity === product.quantity)
+    if(productStock > productQuantity || productStock <= 0) return;
+
+    const currentQuantityInCart = existingProduct ? existingProduct.quantity : 0;
 
     
     if (currentQuantityInCart >= product.stock) {

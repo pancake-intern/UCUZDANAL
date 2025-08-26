@@ -107,7 +107,7 @@ function increaseQuantity(productId) {
 /** @param {string} productId  */
 function decreaseQuantity(productId) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let itemIndex = cart.findIndex(p => p.id == productId); //varmı diye kontrol ediyor. index -1 ise yoktur.
+    let itemIndex = cart.findIndex(p => p.id == productId); 
 
     if (itemIndex > -1) {
         cart[itemIndex].quantity -= 1;

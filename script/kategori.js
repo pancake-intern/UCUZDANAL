@@ -16,43 +16,6 @@ if (storedProductCount) {
 }
 
 
-document.addEventListener('DOMContentLoaded', function() {
-  
-  checkUserSession();
-});
-
-function checkUserSession() {
- 
-  const isUserLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; 
-  const loginButton = document.getElementById('signinButton');
-  const signupButton = document.getElementById('signupButton');
-  const profileSection = document.getElementById('profile-section');
-  const exitButton = document.getElementById('exitaccount')
-  if (isUserLoggedIn) {
-   debugger
-    if (loginButton) loginButton.style.display = 'none';
-    if (signupButton) signupButton.style.display = 'none';
-    
-    
-    if (profileSection) profileSection.style.display = 'flex';
-    
-    
-    updateProfileInfo(profileSection);
-    
-  } else {
-   
-    
-  }
-}
-
-function updateProfileInfo(profileSection) {
-    const username = localStorage.getItem('username')
-    const greeting= document.createElement('p')
-    greeting.classList.add("profile-section","goldtext","mx-1","my-auto")
-;
-    greeting.innerText=`Hoşgeldin ${username}`
-    profileSection.appendChild(greeting)
-}
 
 
 async function getProductsByCategory() {
@@ -85,42 +48,41 @@ async function getProductsByCategory() {
            
             const productcardHTML = `
                 <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                    <div class="card h-100 text-white bg-dark">
-                        <img src="${product.thumbnail}" class="card-img-top" alt="${product.title}" style="height: 200px; object-fit: cover;">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">${product.title}</h5>
-                            <p class="card-text">${product.description.substring(0, 50)}...</p>
-                            <div class="mt-auto">
-                                <p class="fs-5 fw-bold">${product.price} $</p>
-                                <button class="btn fw-bold btn-warning addtoCard w-100" data-product-id="${product.id}">Sepete Ekle</button>
+                    <a href="/pages/urun-detayi.html?id=${product.id}" class="text-decoration-none">
+                        <div class="card h-100 text-white bg-dark">
+                            <img src="${product.thumbnail}" class="card-img-top" alt="${product.title}" style="height: 200px; object-fit: cover;">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">${product.title}</h5>
+                                <p class="card-text">${product.description.substring(0, 50)}...</p>
+                                <div class="mt-auto">
+                                    <p class="fs-5 fw-bold">${product.price} $</p>
+                                    <button class="btn fw-bold btn-warning addtoCard w-100" data-product-id="${product.id}">Sepete Ekle</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             `;
             productContainer.innerHTML += productcardHTML;
         });
 
         
-        document.querySelectorAll(".addtoCard").forEach(btn => {
-            btn.addEventListener("click", () => {
-                productsinCard += 1;
-                localStorage.setItem("productsinCard", productsinCard);
-                const shoppingCard = document.querySelector('#productCounter');
-                if (shoppingCard) {
-                    shoppingCard.innerText = productsinCard;
-                }
-                btn.innerText = "Sepete Eklendi!";
-                btn.classList.remove("btn-warning");
-                btn.classList.add("btn-success");
-
-                setTimeout(() => {
-                    btn.innerText = "Sepete Ekle";
-                    btn.classList.remove("btn-success");
-                    btn.classList.add("btn-warning");
-                }, 1000);
+        document.querySelectorAll('.addtoCard').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            e.stopPropagation(); 
+            
+           
+            const productId = parseInt(button.dataset.productId, 10);
+            
+            
+            const productToAdd = products.find(p => p.id === productId);
+            
+            if (productToAdd) {
                 
-            });
+                addToCart(productToAdd, button);
+            }
+        });
         });
 
     } catch (error) {

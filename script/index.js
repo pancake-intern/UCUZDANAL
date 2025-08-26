@@ -12,43 +12,7 @@ if (storedProductCount) {
         shoppingCard.innerText = productsinCard;
     }
 }
-//!
-document.addEventListener('DOMContentLoaded', function() {
-  
-  checkUserSession();
-});
 
-function checkUserSession() {
- 
-  const isUserLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; 
-  const loginButton = document.getElementById('signinButton');
-  const signupButton = document.getElementById('signupButton');
-  const profileSection = document.getElementById('profile-section');
-  
-  if (isUserLoggedIn) {
-   
-    if (loginButton) loginButton.style.display = 'none';
-    if (signupButton) signupButton.style.display = 'none';
-    
-    
-  if (profileSection) profileSection.style.display = 'flex';
-    
-    
-    updateProfileInfo(profileSection);
-    
-  } else {
-  }
-}
-
-function updateProfileInfo(profileSection) {
-    const username = localStorage.getItem('username')
-    const greeting= document.createElement('p')
-    greeting.classList.add("profile-section","goldtext","mx-1","my-auto")
-;
-    greeting.innerText=`Hoşgeldin ${username}`
-    profileSection.appendChild(greeting)
-}
-//!.
 async function getData(page) {
     currentPage = page;
     const skip = (page - 1) * productsPerPage;
@@ -84,32 +48,25 @@ async function getData(page) {
             `;
             productContainer.innerHTML += productcardHTML;
         });
-
         document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault(); 
-                e.stopPropagation(); 
+        button.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            e.stopPropagation(); 
+            
+           
+            const productId = parseInt(button.dataset.productId, 10);
+            
+            
+            const productToAdd = products.find(p => p.id === productId);
+            
+            if (productToAdd) {
                 
-                productsinCard += 1;
-                localStorage.setItem("productsinCard", productsinCard);
-                const shoppingCard = document.querySelector('#productCounter');
-                if (shoppingCard) {
-                    shoppingCard.innerText = productsinCard;
-                }
-                
-                const btn = e.target;
-                btn.innerText = "Sepete Eklendi!";
-                btn.classList.remove("btn-warning");
-                btn.classList.add("btn-success");
-
-                setTimeout(() => {
-                    btn.innerText = "Sepete Ekle";
-                    btn.classList.remove("btn-success");
-                    btn.classList.add("btn-warning");
-                }, 1000);
-            });
+                addToCart(productToAdd, button);
+            }
+        });
         });
 
+        
         createPagination();
 
 

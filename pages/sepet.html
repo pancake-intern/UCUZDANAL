@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sepet</title>
+    <link rel="stylesheet" href="../style/navbar.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../style/index.css">
     <link rel="stylesheet" href="../style/sepet.css">
     <link rel="stylesheet" href="../style/style.css">
@@ -25,12 +27,7 @@
             <div class="col-12 col-lg-9">
                 <div class="right d-flex flex-column flex-lg-row align-items-center justify-content-center justify-content-lg-end gap-2">
                    
-                    <button class="btn btn-lg signinButton" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Kategoriler
-                    </button>
                     <input type="search" id="searchButton" class="searchBtn rounded form-control-lg gold-input mb-2 mb-lg-0" placeholder="Ürün ara">
-                    
-
                     <div class="d-flex gap-2">
                          <a href="kullanicigiris.html" id="signinButton" class="btn btn-lg signinButton">Üye Girişi</a>
                          <a href="kullanicikayit.html" id="signupButton" class="btn btn-lg signupButton">Kayıt Ol</a>
@@ -43,37 +40,27 @@
 
         </div>
     </div>
-    
-    <nav class="navbar  navbar-dark ">
-        <div class="container-fluid">
-           
-
-
-
-            <div class="collapse navbar-collapse" id="collapseExample">
-                <div class="navbar-nav w-100 justify-content-evenly text-center">
-                    <a href="../index.html" class="nav-link">ANASAYFA</a>
-                    <a href="/pages/kategori.html?category=beauty" class="nav-link">GÜZELLİK</a>
-                    <a href="/pages/kategori.html?category=fragrances" class="nav-link">PARFÜM</a>
-                    <a href="/pages/kategori.html?category=furniture" class="nav-link">MOBİLYA</a>
-                    <a href="/pages/kategori.html?category=groceries" class="nav-link">MEYVE-SEBZE</a>
-                </div>
+     <div class="container my-5 text-center">
+        <h1>Sepetim</h1>
+        <div id="cart-items-container">
             </div>
-        </div>
-    </nav>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-12 addedtoCart text-center">
-                <h1>SEPETİN ŞUAN BOŞ.</h1>
+        <div id="cart-summary" class="text-end mt-4">
             </div>
-           
-        </div>
     </div>
+    
+   
+    
 
 
 
-    <script src="../script/sepet.js"></script>
+
+           
+   
+
+    
+    <script src="../script/main.js"></script>
+    <script src="../script/sepet.js"></script> 
+    <script src="../script/signInCheck.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>

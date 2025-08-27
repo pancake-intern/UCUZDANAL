@@ -53,7 +53,7 @@ async function getproductbyID() {
            
             
            function addCart() {
-            
+            debugger;
             const productToAdd = product.id;
             console.log(productToAdd)
              if(product.stock ==0){

@@ -1,7 +1,7 @@
 /**  @param {object} product -*/
  
 function addToCart(product, button) {
-   
+    debugger;
     let cart = JSON.parse(localStorage.getItem('cart')) || []; //pratik
 
     

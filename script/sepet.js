@@ -104,7 +104,7 @@ function increaseQuantity(productId) {
 
     if (item) {
         if (item.quantity >= item.stock) {
-            alert("Ürün stoğunu aştınız.");
+            alert("Ürün stoğunu aşmayınız.");
             return;
         }
         item.quantity += 1;

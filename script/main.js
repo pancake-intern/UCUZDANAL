@@ -1,7 +1,6 @@
 /**  @param {object} product -*/
  
 function addToCart(product, button) {
-    debugger;
     let cart = JSON.parse(localStorage.getItem('cart')) || []; //pratik
 
     
@@ -9,19 +8,17 @@ function addToCart(product, button) {
     let productStock=cart.find(item => item.stock ===product.stock);
     let productQuantity = cart.find(item => item.quantity === product.quantity);
     if(productStock > productQuantity || productStock <= 0) {console.log("BOOM YOU CANT ADD ANYMORE ITS OUT OF STOCK");
-    return;
+        return;
     }
-    
   
+   
+
     const currentQuantityInCart = existingProduct ? existingProduct.quantity : 0;
 
-    
     if (currentQuantityInCart >= product.stock) {
-       
         showStockErrorAnimation(button);
         return; }
     if (existingProduct) {
-       
         existingProduct.quantity += 1;
     } else {
         
@@ -35,10 +32,10 @@ function addToCart(product, button) {
         });
     }
 
+    
    
     localStorage.setItem('cart', JSON.stringify(cart));
 
-   
     updateCartCounter(); 
     animateButton(button); 
 }

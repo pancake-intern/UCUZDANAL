@@ -51,18 +51,17 @@ async function getproductbyID() {
   const addtoCartButton=document.getElementById("addToCartButton")
   addtoCartButton.addEventListener('click', addCart)
            
-            
            function addCart() {
             debugger;
             const productToAdd = product.id;
             console.log(productToAdd)
              if(product.stock ==0){
-                alert("ÜRÜN STOĞU TÜKENMİŞTİR")
+                alert("ÜRÜN STOĞU TÜKENMİŞTİR.")
             return;
            }
             if (productToAdd) {
                 
-                addToCart(productToAdd, addtoCartButton);
+                addToCart(product, addtoCartButton);
             }
         }
         

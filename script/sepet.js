@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function displayCartItems() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    console.log("cart",cart)
     const container = document.getElementById('cart-items-container');
     const summaryContainer = document.getElementById('cart-summary');
     

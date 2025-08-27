@@ -54,11 +54,12 @@ async function getproductbyID() {
             
            function addCart() {
             
-           
-            
-            
             const productToAdd = product.id;
             console.log(productToAdd)
+             if(product.stock ==0){
+                alert("ÜRÜN STOĞU TÜKENMİŞTİR")
+            return;
+           }
             if (productToAdd) {
                 
                 addToCart(productToAdd, addtoCartButton);

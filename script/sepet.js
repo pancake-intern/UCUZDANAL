@@ -1,5 +1,17 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     displayCartItems();
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('search');
+
+    if (searchQuery) {
+        
+        document.getElementById('searchButton').value = searchQuery;
+        performSearch(searchQuery);
+
+
+    } else {
+       
+    }
 });
 
 function displayCartItems() {
@@ -131,3 +143,22 @@ function deleteItem(productId) {
     displayCartItems();    
     updateCartCounter();    
 }
+
+async function performSearch(query) {
+    try {
+        const response = await fetch(`https://dummyjson.com/products/search?q=${query}`);
+        const data = await response.json();
+        
+        
+        displayProducts(data.products);
+        
+        
+        document.getElementById('pagination-container').innerHTML = '';
+        
+    } catch (error) {
+        console.error("Arama sırasında hata oluştu:", error);
+    }
+}
+
+
+

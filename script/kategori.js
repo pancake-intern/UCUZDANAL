@@ -91,6 +91,104 @@ async function getProductsByCategory() {
     }
 }
 
+async function getData(page) {
+    currentPage = page;
+    const skip = (page - 1) * productsPerPage;
+    try {
+        const response = await fetch(`https://dummyjson.com/products?limit=${productsPerPage}&skip=${skip}`);
+        const data = await response.json();
+        totalProducts = data.total;
+        displayProducts(data.products);
+        createPagination();
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            e.stopPropagation(); 
+            
+           
+            const productId = parseInt(button.dataset.productId, 10);
+            
+            
+            const productToAdd = data.products.find(p => p.id === productId);
+            
+            if (productToAdd) {
+                
+                addToCart(productToAdd, button);
+            }
+        });
+        });
+    } catch (error) {
+        console.error("Veri alınırken hata oluştu:", error);
+    }
+}
+
+
+function createPagination() {
+    const paginationContainer = document.getElementById('pagination-container');
+    if (!paginationContainer) {
+        console.error("Pagination container bulunamadı.");
+        return;
+    }
+    paginationContainer.innerHTML = '';
+
+    const totalPages = Math.ceil(totalProducts / productsPerPage);
+
+    for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement('li');
+        li.classList.add('page-item');
+        if (i === currentPage) {
+            li.classList.add('active');
+        }
+
+        const a = document.createElement('a');
+        a.classList.add('page-link','bg-secondary' ,'signupButton');
+        a.href = '#';
+        a.textContent = i;
+        a.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            getData(i);
+        });
+
+        li.appendChild(a);
+        paginationContainer.appendChild(li);
+    }
+}
+
+
+async function performSearch(query) {
+    try {
+        const response = await fetch(`https://dummyjson.com/products/search?q=${query}`);
+        const data = await response.json();
+        
+        
+        displayProducts(data.products);
+        
+        
+        document.getElementById('pagination-container').innerHTML = '';
+        
+    } catch (error) {
+        console.error("Arama sırasında hata oluştu:", error);
+    }
+}
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('search');
+
+    if (searchQuery) {
+        
+        document.getElementById('searchButton').value = searchQuery;
+        performSearch(searchQuery);
+
+
+    } else {
+       
+    }
+});
 
 getProductsByCategory();
 

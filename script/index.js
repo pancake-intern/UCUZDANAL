@@ -10,7 +10,7 @@ function displayProducts(products) {
     productContainer.innerHTML = ''; 
 
     if (!products || products.length === 0) {
-        productContainer.innerHTML = '<p class="text-center text-white col-12">Aradığınız kriterlere uygun ürün bulunamadı.</p>';
+        productContainer.innerHTML = '<p class="text-center goldtext col-12">Aradığınız kriterlere uygun ürün bulunamadı.</p>';
         return;
     }
 

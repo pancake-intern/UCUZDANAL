@@ -81,7 +81,6 @@ async function getproductbyID() {
   addtoCartButton.addEventListener('click', addCart)
            
            function addCart() {
-            debugger;
             const productToAdd = product.id;
             console.log(productToAdd)
              if(product.stock ==0){

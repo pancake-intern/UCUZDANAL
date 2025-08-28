@@ -5,14 +5,6 @@ function addToCart(product, button) {
 
     
     let existingProduct = cart.find(item => item.id === product.id);
-    let productStock=cart.find(item => item.stock ===product.stock);
-    let productQuantity = cart.find(item => item.quantity === product.quantity);
-    if(productStock > productQuantity || productStock <= 0) {console.log("BOOM YOU CANT ADD ANYMORE ITS OUT OF STOCK");
-        return;
-    }
-  
-   
-
     const currentQuantityInCart = existingProduct ? existingProduct.quantity : 0;
 
     if (currentQuantityInCart >= product.stock) {
@@ -43,17 +35,14 @@ function addToCart(product, button) {
 
 function updateCartCounter() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
    
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);//miktar=quantity
+    const uniqueItemCount = cart.length;
     
     const shoppingCardCounters = document.querySelectorAll('#productCounter');
-    if (shoppingCardCounters) {
-        shoppingCardCounters.forEach(counter => {
-            counter.innerText = totalItems;
-        });
-    }
-   
-    localStorage.setItem("productsinCard", totalItems);
+    shoppingCardCounters.forEach(counter => {
+        counter.innerText = uniqueItemCount;
+    });
 }
 
 

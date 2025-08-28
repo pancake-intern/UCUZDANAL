@@ -1,23 +1,3 @@
-
-
-let productsinCard = 0;
-
-
-
-//sadece sayaç, productsincardı tıklanan şeyin verisini alacak şekilde kayddet.
-
-const storedProductCount = localStorage.getItem("productsinCard");
-if (storedProductCount) {
-    productsinCard = parseInt(storedProductCount, 10);
-    const shoppingCard = document.querySelector('#productCounter');
-    if (shoppingCard) {
-        shoppingCard.innerText = productsinCard;
-    }
-}
-
-
-
-
 async function getProductsByCategory() {
     
     const params = new URLSearchParams(window.location.search);

@@ -89,3 +89,23 @@ function showStockErrorAnimation(button) {
  document.addEventListener('DOMContentLoaded', updateCartCounter);
 
  //test main
+
+
+ /*
+ fetchData(){
+
+        const fetchdata = await fetch(`https://dummyjson.com/products);
+        const data = await response.json();
+        const products = []
+        data.products.forEach(item => {
+         products.push(item);
+        });
+
+
+ }
+ 
+ 
+ 
+ 
+ 
+ */ 

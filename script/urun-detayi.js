@@ -1,3 +1,6 @@
+
+
+
 let totalProducts = 0;
 
 let productsinCard = JSON.parse(localStorage.getItem("productsinCard"))
@@ -20,16 +23,30 @@ async function getproductbyID() {
             imageGalleryHTML += `<img src="${img}" 
             class="img-fluid mb-2 my-2 ${index === 0 ? 'active' : ''}" >`; 
         })
+        const swiperSlidesHTML = product.images.map(img => `
+            <div class="swiper-slide">
+                <img src="${img}" class="img-fluid rounded" alt="${product.title} görseli">
+            </div>
+        `).join('');
 
         
         const productDetailsHTML = `
             <div class="col-md-2 rounded">
-                <div class="product-image-gallery  rounded my-2">
+               <div class="product-image-gallery rounded my-2">
                    ${imageGalleryHTML}
                 </div>
             </div>
             <div class="col-md-5">
-               <img src="${product.thumbnail}" id="main-product-image" class="img-fluid rounded" alt="${product.title}">
+                <div class="swiper rounded">
+                    <div class="swiper-wrapper">
+                       ${swiperSlidesHTML}
+                    </div>
+
+                    <div class="swiper-button-prev goldtext"></div>
+                    <div class="swiper-button-next goldtext"></div>
+
+                    <div class="swiper-scrollbar"></div>
+                </div>
             </div>
 
             <div class="col-md-5 goldtext">
@@ -47,6 +64,18 @@ async function getproductbyID() {
             </div>
         `;
         container.innerHTML = productDetailsHTML;
+        const swiper = new Swiper('.swiper', {
+           
+            loop: true, 
+            
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+            scrollbar: {
+              el: '.swiper-scrollbar',
+            },
+        });
 
   const addtoCartButton=document.getElementById("addToCartButton")
   addtoCartButton.addEventListener('click', addCart)
